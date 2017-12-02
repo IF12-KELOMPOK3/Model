@@ -5,6 +5,8 @@
  */
 package view;
 
+import model.DataFitness;
+
 /**
  *
  * @author AsusPC
@@ -95,6 +97,11 @@ public class UI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(listPaket);
 
         jButton1.setText("Simpan");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Output :");
 
@@ -169,10 +176,11 @@ public class UI extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(checkKecil))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkBesar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkBesar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -207,6 +215,72 @@ public class UI extends javax.swing.JFrame {
     private void boxCabangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_boxCabangItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_boxCabangItemStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String noKtp;
+        String nama;
+        String jenKel;
+        String handuk = "";
+        String cabang;
+        String paket;
+        int biaya;
+        
+        DataFitness oFit = new DataFitness();
+        
+        noKtp = txtKtp.getText();
+        nama = txtNama.getText();
+        
+        if (btnMale.isSelected()) {
+            jenKel = btnMale.getText();
+        } else {
+            jenKel = btnFemale.getText();
+        }
+
+        if (checkKecil.isSelected()) {
+            handuk += " Kecil";
+        }
+
+        if (checkBesar.isSelected()) {
+            handuk += " Besar";
+        }
+
+        cabang = boxCabang.getSelectedItem().toString();
+        paket = listPaket.getSelectedValue();
+        
+        switch (paket) {
+            case "Reguler":
+                biaya = 450000;
+                break;
+            case "Mahasiswa":
+                biaya = 300000;
+                break;
+            case "Private":
+                biaya = 750000;
+                break;
+            case "Premium":
+                biaya = 1000000;
+                break;
+            default:
+                break;
+        
+        
+        oFit.setNoKtp(noKtp);
+        oFit.setNama(nama);
+        oFit.setJeniskelamin(jenKel);
+        oFit.setCabang(cabang);
+        oFit.setHanduk(handuk);
+        oFit.setPaketfitness(paket);
+        txtArea.append("PENDAFTARA ANGGOTA GYM\n"
+                +   "No KTP :"+oFit.getNoKtp()+
+                    "Nama : "+oFit.getNama());
+        
+        
+        
+        
+    }  
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
