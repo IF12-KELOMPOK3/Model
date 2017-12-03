@@ -272,14 +272,15 @@ public class UI extends javax.swing.JFrame {
         oFit.setCabang(cabang);
         oFit.setHanduk(handuk);
         oFit.setPaketfitness(paket);
+        oFit.setBiayapendaftaran(biaya);
         textArea.append("PENDAFTARAN ANGGOTA GYM "
-                + "\nNo KTP : " + noKtp
-                + "\nNama : " + nama
-                + "\nJenis Kelamin : " + jenKel
-                + "\nCabang : " + cabang
-                + "\nHanduk : " + handuk
-                + "\nPaket Fitness : " + paket
-                + "\nBiaya Pendaftaran : Rp. " + biaya + "/bln");
+                + "\nNo KTP : " + oFit.getNoKtp()
+                + "\nNama : " + oFit.getNama()
+                + "\nJenis Kelamin : " + oFit.getJeniskelamin()
+                + "\nCabang : " + oFit.getCabang()
+                + "\nHanduk : " + oFit.getHanduk()
+                + "\nPaket Fitness : " + oFit.getPaketfitness()
+                + "\nBiaya Pendaftaran : Rp. " + oFit.getBiayapendaftaran() + "/bln");
 
 
     }//GEN-LAST:event_btnSimpanActionPerformed
