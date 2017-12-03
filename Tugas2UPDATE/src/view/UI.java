@@ -48,10 +48,10 @@ public class UI extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listPaket = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
+        btnSimpan = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txtArea = new javax.swing.JTextArea();
+        textArea = new javax.swing.JTextArea();
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -96,18 +96,20 @@ public class UI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(listPaket);
 
-        jButton1.setText("Simpan");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSimpan.setText("Simpan");
+        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSimpanActionPerformed(evt);
             }
         });
 
         jLabel10.setText("Output :");
 
-        txtArea.setColumns(20);
-        txtArea.setRows(5);
-        jScrollPane2.setViewportView(txtArea);
+        textArea.setColumns(20);
+        textArea.setRows(5);
+        textArea.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        textArea.setEnabled(false);
+        jScrollPane2.setViewportView(textArea);
 
         jLabel11.setText("Developed by : KELOMPOK-3 IF-12");
 
@@ -154,7 +156,7 @@ public class UI extends javax.swing.JFrame {
                                     .addComponent(checkBesar)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(checkKecil)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(21, 21, 21))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel11)
@@ -198,7 +200,7 @@ public class UI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
+                        .addComponent(btnSimpan))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(jLabel10)))
@@ -216,7 +218,7 @@ public class UI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_boxCabangItemStateChanged
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
         String noKtp;
         String nama;
@@ -224,13 +226,13 @@ public class UI extends javax.swing.JFrame {
         String handuk = "";
         String cabang;
         String paket;
-        int biaya;
-        
+        int biaya = 0;
+
         DataFitness oFit = new DataFitness();
-        
+
         noKtp = txtKtp.getText();
         nama = txtNama.getText();
-        
+
         if (btnMale.isSelected()) {
             jenKel = btnMale.getText();
         } else {
@@ -247,7 +249,7 @@ public class UI extends javax.swing.JFrame {
 
         cabang = boxCabang.getSelectedItem().toString();
         paket = listPaket.getSelectedValue();
-        
+
         switch (paket) {
             case "Reguler":
                 biaya = 450000;
@@ -263,24 +265,24 @@ public class UI extends javax.swing.JFrame {
                 break;
             default:
                 break;
-        
-        
+        }
         oFit.setNoKtp(noKtp);
         oFit.setNama(nama);
         oFit.setJeniskelamin(jenKel);
         oFit.setCabang(cabang);
         oFit.setHanduk(handuk);
         oFit.setPaketfitness(paket);
-        txtArea.append("PENDAFTARA ANGGOTA GYM\n"
-                +   "No KTP :"+oFit.getNoKtp()+
-                    "Nama : "+oFit.getNama());
-        
-        
-        
-        
-    }  
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+        textArea.append("PENDAFTARAN ANGGOTA GYM "
+                + "\nNo KTP : " + noKtp
+                + "\nNama : " + nama
+                + "\nJenis Kelamin : " + jenKel
+                + "\nCabang : " + cabang
+                + "\nHanduk : " + handuk
+                + "\nPaket Fitness : " + paket
+                + "\nBiaya Pendaftaran : Rp. " + biaya + "/bln");
+
+
+    }//GEN-LAST:event_btnSimpanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -321,10 +323,10 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> boxCabang;
     private javax.swing.JRadioButton btnFemale;
     private javax.swing.JRadioButton btnMale;
+    private javax.swing.JButton btnSimpan;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox checkBesar;
     private javax.swing.JCheckBox checkKecil;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -339,7 +341,7 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<String> listPaket;
-    private javax.swing.JTextArea txtArea;
+    private javax.swing.JTextArea textArea;
     private javax.swing.JTextField txtKtp;
     private javax.swing.JTextField txtNama;
     // End of variables declaration//GEN-END:variables
